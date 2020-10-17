@@ -8,11 +8,16 @@
             "email": "ngovanphuc@hotmail.com"
         }
     ],
-    "minimum-stability": "dev",
-    "require": {},
     "autoload": {
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files": [
+            "app/Utils/utils.php"
+        ]
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.2",
+        "bramus/router": "^1.4"
     }
 }

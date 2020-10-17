@@ -1,0 +1,32 @@
+*,
+{
+  box-sizing: border-box;
+}
+
+::root {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #eee;
+}
+
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.site-content {
+  flex: 1;
+}
+
+footer {
+  text-align: center;
+}

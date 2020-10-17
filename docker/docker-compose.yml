@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  webserver:
+    build:
+      context: .
+      dockerfile: ./php/Dockerfile
+    container_name: webserver_container
+    volumes:
+      - ./php/conf/vhost.conf:/etc/apache2/conf.d/vhost.conf
+      - ../:/var/www/web
+      - ../data/log:/var/log/apache2
+    ports:
+      - "${WEBSERVER_PORT}:80"
+    depends_on:
+      - database
+
+  # redis:
+  #   image: redis:5-alpine
+  #   volumes:
+  #     - ./data/redis:/data
+  #   ports:
+  #     - "6379:6379"
+  #
+  database:
+    image: mariadb:10.4-bionic
+    restart: always
+    volumes:
+      - ../:/~
+      - ../data/db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    ports:
+      - "${MYSQL_PORT}:3306"
+
